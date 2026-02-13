@@ -102,7 +102,10 @@
             z-index: 30;
         }
 
-        .carousel-scene { perspective: 1000px; }
+        .carousel-scene {
+            perspective: 1000px;
+            touch-action: pan-y;
+        }
 
         .carousel {
             transform-style: preserve-3d;
@@ -727,16 +730,16 @@
 
         <section id="gallery" class="min-h-screen py-20 px-6 overflow-hidden bg-rose-50/50">
             <div class="max-w-6xl mx-auto">
-                <div class="flex flex-col md:flex-row justify-between items-end mb-16 reveal">
-                    <div>
+                <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-5 mb-12 reveal">
+                    <div class="text-center md:text-left">
                         <h2 class="text-3xl md:text-4xl font-medium tracking-tight text-slate-900 mb-2">Galeri Foto</h2>
-                        <p class="text-slate-500 font-light">Momen terbaik kita dalam satu ruang.</p>
+                        <p class="text-slate-500 font-light max-w-md mx-auto md:mx-0">Momen terbaik kita dalam satu ruang.</p>
                     </div>
-                    <div class="flex gap-2 mt-4 md:mt-0">
-                        <button id="prevBtn" class="w-10 h-10 rounded-full border border-slate-200 flex items-center justify-center hover:bg-white hover:shadow-md transition text-slate-600" aria-label="Previous photo">
+                    <div class="flex gap-2 self-center md:self-auto">
+                        <button id="prevBtn" class="w-11 h-11 rounded-full border border-slate-200 bg-white/70 backdrop-blur-sm flex items-center justify-center hover:bg-white hover:shadow-md transition text-slate-600" aria-label="Previous photo">
                             <iconify-icon icon="solar:arrow-left-linear"></iconify-icon>
                         </button>
-                        <button id="nextBtn" class="w-10 h-10 rounded-full border border-slate-200 flex items-center justify-center hover:bg-white hover:shadow-md transition text-slate-600" aria-label="Next photo">
+                        <button id="nextBtn" class="w-11 h-11 rounded-full border border-slate-200 bg-white/70 backdrop-blur-sm flex items-center justify-center hover:bg-white hover:shadow-md transition text-slate-600" aria-label="Next photo">
                             <iconify-icon icon="solar:arrow-right-linear"></iconify-icon>
                         </button>
                     </div>
@@ -849,7 +852,7 @@
     </div>
 
         <footer class="py-12 text-center text-slate-400 text-sm font-light relative z-10">
-            <p>Made with ❤️ by Dennis for Najmah</p>
+            <p>Made with ❤️</p>
             <div class="mt-2">
                 <iconify-icon icon="solar:infinity-linear" width="24"></iconify-icon>
             </div>
@@ -965,6 +968,37 @@
                 selectedIndex++;
                 rotateCarousel();
             }, 3500);
+        }
+
+        const carouselScene = document.querySelector('.carousel-scene');
+        let swipeStartX = 0;
+        let swipeDeltaX = 0;
+
+        if (carouselScene) {
+            carouselScene.addEventListener('touchstart', (e) => {
+                if (!e.touches.length) return;
+                swipeStartX = e.touches[0].clientX;
+                swipeDeltaX = 0;
+            }, { passive: true });
+
+            carouselScene.addEventListener('touchmove', (e) => {
+                if (!e.touches.length) return;
+                swipeDeltaX = e.touches[0].clientX - swipeStartX;
+            }, { passive: true });
+
+            carouselScene.addEventListener('touchend', () => {
+                if (Math.abs(swipeDeltaX) < 45) return;
+
+                if (swipeDeltaX < 0) {
+                    selectedIndex++;
+                } else {
+                    selectedIndex--;
+                }
+
+                rotateCarousel();
+                resetAutoSlide();
+                swipeDeltaX = 0;
+            });
         }
 
         document.getElementById('prevBtn').addEventListener('click', resetAutoSlide);
