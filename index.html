@@ -1,0 +1,1122 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For You, Najmah Auliya ❤️</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Dancing+Script:wght@500;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #f43f5e;
+            --rose-glass: rgba(255, 255, 255, 0.7);
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: #fff0f3;
+            background-image:
+                radial-gradient(at 0% 0%, hsla(350,93%,90%,1) 0, transparent 50%),
+                radial-gradient(at 100% 0%, hsla(335,85%,92%,1) 0, transparent 50%),
+                radial-gradient(at 100% 100%, hsla(350,90%,92%,1) 0, transparent 50%),
+                radial-gradient(at 0% 100%, hsla(335,88%,90%,1) 0, transparent 50%);
+            overflow-x: hidden;
+        }
+
+        .noise-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.04;
+            pointer-events: none;
+            z-index: 9999;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #fda4af; border-radius: 10px; }
+
+        h1, h2, h3 { font-family: 'Playfair Display', serif; }
+        .handwritten { font-family: 'Dancing Script', cursive; }
+
+        .perspective-1000 { perspective: 1000px; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(2deg); }
+        }
+
+        .animate-float { animation: float 6s ease-in-out infinite; }
+        .animate-float-delayed { animation: float 7s ease-in-out 2s infinite; }
+
+        @keyframes spin-slow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .spin-vinyl { animation: spin-slow 8s linear infinite; }
+        .paused .spin-vinyl { animation-play-state: paused; }
+
+        .envelope-container {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .envelope-body {
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .envelope-container:hover .envelope-body {
+            transform: translateY(-5px) scale(1.02);
+        }
+
+        .letter-content {
+            transform-origin: bottom;
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s;
+            transform: translateY(100%) scale(0.9);
+            opacity: 0;
+            z-index: 0;
+        }
+
+        .envelope-container.open .letter-content {
+            transform: translateY(-40px) scale(1);
+            opacity: 1;
+            z-index: 20;
+        }
+
+        .envelope-container.open .envelope-flap {
+            transform: rotateX(180deg);
+            z-index: 0;
+        }
+
+        .envelope-flap {
+            transform-origin: top;
+            transition: transform 0.6s ease, z-index 0.6s;
+            z-index: 30;
+        }
+
+        .carousel-scene { perspective: 1000px; }
+
+        .carousel {
+            transform-style: preserve-3d;
+            transition: transform 1s;
+        }
+
+        .carousel-cell {
+            position: absolute;
+            left: 10px;
+            top: 10px;
+            transition: all 0.5s;
+            backface-visibility: hidden;
+        }
+
+        .bar {
+            width: 3px;
+            background: #f43f5e;
+            border-radius: 9999px;
+            animation: equalizer 1s ease-in-out infinite;
+        }
+
+        .bar:nth-child(1) { height: 10px; animation-delay: 0.1s; }
+        .bar:nth-child(2) { height: 16px; animation-delay: 0.2s; }
+        .bar:nth-child(3) { height: 12px; animation-delay: 0.3s; }
+        .bar:nth-child(4) { height: 8px; animation-delay: 0.4s; }
+        .paused .bar { animation-play-state: paused; height: 3px; }
+
+        @keyframes equalizer {
+            0%, 100% { height: 8px; }
+            50% { height: 100%; }
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, #e11d48 0%, #db2777 50%, #9f1239 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        #loader {
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+            background: #fff0f3;
+            transition: opacity 0.8s ease-out, visibility 0.8s;
+        }
+
+        .loader-heart {
+            animation: heartbeat 1.5s ease-in-out infinite both;
+        }
+
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            15% { transform: scale(1.3); }
+            30% { transform: scale(1); }
+            45% { transform: scale(1.15); }
+            60% { transform: scale(1); }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .intro-3d {
+            position: relative;
+            min-height: 100vh;
+            overflow: hidden;
+            display: grid;
+            place-items: center;
+            perspective: 1200px;
+        }
+
+        .scene-3d {
+            position: absolute;
+            inset: 0;
+            transform-style: preserve-3d;
+            will-change: transform;
+        }
+
+        .shape-3d {
+            position: absolute;
+            transform-style: preserve-3d;
+            pointer-events: none;
+        }
+
+        .ring {
+            width: 420px;
+            height: 420px;
+            border: 20px solid rgba(255,255,255,0.32);
+            border-radius: 9999px;
+            box-shadow: inset 0 0 50px rgba(255,255,255,0.3), 0 0 80px rgba(244,63,94,0.2), 0 0 160px rgba(244,63,94,0.06);
+            animation: spinRing 18s linear infinite;
+        }
+
+        .ring.ring-2 {
+            width: 260px;
+            height: 260px;
+            border-width: 14px;
+            border-color: rgba(253,164,175,0.4);
+            animation-direction: reverse;
+            animation-duration: 12s;
+        }
+
+        .blob {
+            width: 180px;
+            height: 180px;
+            border-radius: 38% 62% 63% 37% / 41% 44% 56% 59%;
+            background: linear-gradient(145deg, rgba(244,63,94,0.55), rgba(219,39,119,0.35));
+            box-shadow: 0 20px 60px rgba(244,63,94,0.3), 0 0 100px rgba(244,63,94,0.1);
+            animation: floatBlob 7s ease-in-out infinite;
+        }
+
+        .blob.blob-2 {
+            width: 130px;
+            height: 130px;
+            animation-delay: -3s;
+            background: linear-gradient(145deg, rgba(167,139,250,0.35), rgba(236,72,153,0.2));
+        }
+
+        .cube-wrap {
+            width: 120px;
+            height: 120px;
+            transform-style: preserve-3d;
+            animation: spinCube 10s linear infinite;
+        }
+
+        .cube-wrap span {
+            position: absolute;
+            inset: 0;
+            border-radius: 16px;
+            background: rgba(255,255,255,0.35);
+            border: 1px solid rgba(255,255,255,0.6);
+            backdrop-filter: blur(8px);
+            box-shadow: inset 0 0 20px rgba(255,255,255,0.25);
+        }
+
+        .cube-wrap span:nth-child(1) { transform: translateZ(60px); }
+        .cube-wrap span:nth-child(2) { transform: rotateY(180deg) translateZ(60px); }
+        .cube-wrap span:nth-child(3) { transform: rotateY(90deg) translateZ(60px); }
+        .cube-wrap span:nth-child(4) { transform: rotateY(-90deg) translateZ(60px); }
+        .cube-wrap span:nth-child(5) { transform: rotateX(90deg) translateZ(60px); }
+        .cube-wrap span:nth-child(6) { transform: rotateX(-90deg) translateZ(60px); }
+
+        .intro-chip {
+            position: relative;
+            z-index: 10;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255,255,255,0.72);
+            border: 1px solid rgba(255,255,255,0.8);
+            backdrop-filter: blur(14px);
+            border-radius: 9999px;
+            padding: 12px 24px;
+            color: #be185d;
+            font-size: 11px;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            font-weight: 600;
+            box-shadow: 0 10px 30px rgba(190,24,93,0.12), 0 0 0 1px rgba(255,255,255,0.5);
+        }
+
+        @keyframes spinRing {
+            from { transform: rotateX(70deg) rotate(0deg); }
+            to { transform: rotateX(70deg) rotate(360deg); }
+        }
+
+        @keyframes floatBlob {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-22px) rotate(8deg); }
+        }
+
+        @keyframes spinCube {
+            from { transform: rotateX(15deg) rotateY(0deg); }
+            to { transform: rotateX(15deg) rotateY(360deg); }
+        }
+
+        @media (max-width: 640px) {
+            .ring { width: 280px; height: 280px; border-width: 12px; }
+            .ring.ring-2 { width: 180px; height: 180px; border-width: 9px; }
+            .blob { width: 110px; height: 110px; }
+            .blob.blob-2 { width: 90px; height: 90px; }
+            .cube-wrap { width: 80px; height: 80px; }
+            .cube-wrap span:nth-child(1) { transform: translateZ(40px); }
+            .cube-wrap span:nth-child(2) { transform: rotateY(180deg) translateZ(40px); }
+            .cube-wrap span:nth-child(3) { transform: rotateY(90deg) translateZ(40px); }
+            .cube-wrap span:nth-child(4) { transform: rotateY(-90deg) translateZ(40px); }
+            .cube-wrap span:nth-child(5) { transform: rotateX(90deg) translateZ(40px); }
+            .cube-wrap span:nth-child(6) { transform: rotateX(-90deg) translateZ(40px); }
+            .intro-chip { margin-top: 40px; }
+        }
+
+        /* ═══ Hero Overlay ═══ */
+        .hero-overlay {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            padding: 0 1.5rem;
+        }
+
+        .hero-overlay::before {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 65%);
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            line-height: 1.05;
+            color: transparent;
+            background: linear-gradient(135deg, #881337 0%, #e11d48 30%, #be185d 60%, #9f1239 100%);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            animation: gradientShift 6s ease infinite;
+            filter: drop-shadow(0 4px 15px rgba(190,24,93,0.12));
+        }
+
+        .hero-ampersand {
+            font-family: 'Dancing Script', cursive;
+            color: #fb7185;
+            filter: drop-shadow(0 2px 8px rgba(244,63,94,0.15));
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        /* ═══ Entrance Animations ═══ */
+        .entrance {
+            opacity: 0;
+            transform: translateY(50px) scale(0.92);
+        }
+
+        body.loaded .entrance {
+            animation: entranceFade 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        body.loaded .entrance.delay-1 { animation-delay: 0.1s; }
+        body.loaded .entrance.delay-2 { animation-delay: 0.35s; }
+        body.loaded .entrance.delay-3 { animation-delay: 0.6s; }
+        body.loaded .entrance.delay-4 { animation-delay: 0.85s; }
+        body.loaded .entrance.delay-5 { animation-delay: 1.3s; }
+
+        @keyframes entranceFade {
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        /* ═══ Shimmer Text ═══ */
+        .shimmer {
+            background: linear-gradient(110deg, #e11d48 20%, #fb7185 40%, #fecdd3 50%, #fb7185 60%, #e11d48 80%);
+            background-size: 200% 100%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shimmerText 4s ease-in-out infinite;
+        }
+
+        @keyframes shimmerText {
+            0% { background-position: 200% center; }
+            100% { background-position: -200% center; }
+        }
+
+        /* ═══ Cursor Glow ═══ */
+        .cursor-glow {
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(251,113,133,0.08) 0%, rgba(244,63,94,0.03) 40%, transparent 70%);
+            pointer-events: none;
+            z-index: 45;
+            transform: translate(-50%, -50%);
+            transition: left 0.12s ease-out, top 0.12s ease-out;
+            display: none;
+        }
+
+        /* ═══ Particle Canvas ═══ */
+        #particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 35;
+        }
+
+        /* ═══ Scroll Line ═══ */
+        .scroll-line {
+            width: 1px;
+            height: 50px;
+            background: linear-gradient(to bottom, transparent, #fb7185, transparent);
+            animation: scrollPulse 2.5s ease-in-out infinite;
+        }
+
+        @keyframes scrollPulse {
+            0%, 100% { opacity: 0.3; transform: scaleY(0.5); }
+            50% { opacity: 1; transform: scaleY(1); }
+        }
+
+        /* ═══ Photo Hover ═══ */
+        .photo-hover {
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.6s;
+        }
+
+        .photo-hover:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 25px 50px -12px rgba(244,63,94,0.2);
+        }
+
+        /* ═══ Number Pulse ═══ */
+        .count-pulse { animation: countPulse 3s ease-in-out infinite; }
+
+        @keyframes countPulse {
+            0%, 100% { transform: scale(1); text-shadow: 0 0 0px transparent; }
+            50% { transform: scale(1.06); text-shadow: 0 0 40px rgba(244,63,94,0.5); }
+        }
+
+        /* ═══ Loading Bar ═══ */
+        @keyframes loadBar {
+            0% { width: 0%; margin-left: 0%; }
+            50% { width: 100%; margin-left: 0%; }
+            100% { width: 0%; margin-left: 100%; }
+        }
+
+        /* ═══ Lightbox ═══ */
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            z-index: 9998;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.4s ease, visibility 0.4s;
+        }
+
+        .lightbox.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .lightbox-backdrop {
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.75);
+            backdrop-filter: blur(16px);
+        }
+
+        .lightbox-img {
+            position: relative;
+            z-index: 1;
+            max-width: 90vw;
+            max-height: 85vh;
+            border-radius: 16px;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.4);
+            transform: scale(0.85);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            object-fit: contain;
+        }
+
+        .lightbox.active .lightbox-img {
+            transform: scale(1);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 24px;
+            z-index: 2;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,255,255,0.2);
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .lightbox-close:hover {
+            background: rgba(255,255,255,0.25);
+            transform: scale(1.1);
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 2;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,255,255,0.2);
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .lightbox-nav:hover {
+            background: rgba(255,255,255,0.25);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .lightbox-prev { left: 20px; }
+        .lightbox-next { right: 20px; }
+
+        .lightbox-counter {
+            position: absolute;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            color: rgba(255,255,255,0.7);
+            font-size: 13px;
+            letter-spacing: 0.1em;
+            font-weight: 400;
+        }
+
+        .gallery-clickable {
+            cursor: pointer;
+            transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.5s;
+        }
+
+        .gallery-clickable:hover {
+            transform: scale(1.03);
+        }
+
+        @media (max-width: 640px) {
+            .hero-overlay::before { width: 350px; height: 350px; }
+            .lightbox-nav { width: 36px; height: 36px; }
+            .lightbox-prev { left: 10px; }
+            .lightbox-next { right: 10px; }
+        }
+    </style>
+</head>
+<body class="text-slate-700 antialiased selection:bg-rose-200 selection:text-rose-900">
+
+    <div class="noise-bg"></div>
+
+    <canvas id="particles"></canvas>
+    <div class="cursor-glow" id="cursorGlow"></div>
+
+    <div id="loader" class="flex flex-col items-center justify-center h-screen gap-5">
+        <div class="relative">
+            <div class="absolute inset-0 bg-rose-400/20 rounded-full blur-2xl scale-150 animate-pulse"></div>
+            <div class="loader-heart text-rose-500 relative">
+                <iconify-icon icon="solar:heart-bold" width="56"></iconify-icon>
+            </div>
+        </div>
+        <div class="flex flex-col items-center gap-2">
+            <p class="text-[11px] font-medium tracking-[0.3em] uppercase text-rose-400">Preparing something special</p>
+            <div class="w-24 h-0.5 rounded-full bg-rose-200/50 overflow-hidden">
+                <div class="h-full bg-rose-400 rounded-full" style="animation: loadBar 1.5s ease-in-out infinite;"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="fixed bottom-6 right-6 z-50 animate-float-delayed">
+        <div class="bg-white/80 backdrop-blur-xl border border-white/50 p-2 pr-4 rounded-full shadow-lg shadow-rose-200/50 flex items-center gap-3 transition-all duration-300 hover:scale-105 group" id="musicContainer">
+            <div class="relative w-10 h-10 flex items-center justify-center bg-rose-100 rounded-full overflow-hidden spin-vinyl paused" id="disk">
+                <div class="absolute inset-0 bg-[url('asset/foto/denis1.jpeg')] bg-cover bg-center opacity-80"></div>
+                <div class="w-3 h-3 bg-white rounded-full z-10 border border-gray-200"></div>
+            </div>
+            <div class="flex flex-col gap-0.5">
+                <span class="text-xs font-semibold text-slate-800 tracking-tight">LANY - You</span>
+                <div class="flex gap-0.5 h-4 items-end paused" id="visualizer">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+            <button id="playBtn" class="ml-2 text-rose-500 hover:text-rose-600 transition-colors" aria-label="Play music">
+                <iconify-icon icon="solar:play-circle-linear" width="28" id="playIcon"></iconify-icon>
+            </button>
+        </div>
+        <audio id="bgMusic" loop>
+            <source src="asset/lagu/LANY - you (Lyrics).mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <nav class="fixed top-6 left-1/2 -translate-x-1/2 z-40">
+        <div class="bg-white/70 backdrop-blur-md border border-white/40 px-6 py-3 rounded-full shadow-sm flex gap-6 items-center">
+            <a href="#home" class="text-rose-400 hover:text-rose-600 transition-colors" aria-label="Home"><iconify-icon icon="solar:home-smile-linear" width="20"></iconify-icon></a>
+            <a href="#letter" class="text-rose-400 hover:text-rose-600 transition-colors" aria-label="Letter"><iconify-icon icon="solar:letter-linear" width="20"></iconify-icon></a>
+            <a href="#gallery" class="text-rose-400 hover:text-rose-600 transition-colors" aria-label="Gallery"><iconify-icon icon="solar:gallery-wide-linear" width="20"></iconify-icon></a>
+        </div>
+    </nav>
+
+    <main class="relative z-10">
+        <section id="home" class="intro-3d">
+            <div class="scene-3d" id="scene3d">
+                <div class="shape-3d ring" data-depth="0.25" style="left: 50%; top: 46%; transform: translate(-50%, -50%) rotateX(70deg);"></div>
+                <div class="shape-3d ring ring-2" data-depth="0.35" style="left: 52%; top: 48%; transform: translate(-50%, -50%) rotateX(70deg);"></div>
+
+                <div class="shape-3d blob" data-depth="0.8" style="left: 16%; top: 30%;"></div>
+                <div class="shape-3d blob blob-2" data-depth="0.65" style="right: 14%; top: 26%;"></div>
+                <div class="shape-3d blob" data-depth="0.75" style="right: 18%; bottom: 18%;"></div>
+
+                <div class="shape-3d" data-depth="1" style="left: 22%; bottom: 20%;">
+                    <div class="cube-wrap">
+                        <span></span><span></span><span></span><span></span><span></span><span></span>
+                    </div>
+                </div>
+
+                <div class="shape-3d" data-depth="0.9" style="right: 20%; top: 55%;">
+                    <div class="cube-wrap" style="animation-duration: 13s; animation-direction: reverse; width: 95px; height: 95px;">
+                        <span style="transform: translateZ(47.5px);"></span>
+                        <span style="transform: rotateY(180deg) translateZ(47.5px);"></span>
+                        <span style="transform: rotateY(90deg) translateZ(47.5px);"></span>
+                        <span style="transform: rotateY(-90deg) translateZ(47.5px);"></span>
+                        <span style="transform: rotateX(90deg) translateZ(47.5px);"></span>
+                        <span style="transform: rotateX(-90deg) translateZ(47.5px);"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-overlay">
+                <div class="entrance delay-1">
+                    <div class="intro-chip">
+                        <iconify-icon icon="solar:heart-shine-bold" class="text-rose-500" width="14"></iconify-icon>
+                        Happy Valentine's Day
+                    </div>
+                </div>
+
+                <h1 class="hero-title text-5xl md:text-7xl lg:text-8xl entrance delay-2 mt-6">For Najmah Auliya</h1>
+
+                <p class="shimmer text-sm md:text-base font-medium tracking-[0.3em] uppercase mt-6 entrance delay-4">14 · 02 · 2026</p>
+
+                <div class="mt-12 entrance delay-5">
+                    <a href="#letter" class="group inline-flex flex-col items-center gap-3 text-rose-400 hover:text-rose-500 transition-colors">
+                        <span class="text-[10px] tracking-[0.25em] uppercase font-medium">Scroll to explore</span>
+                        <div class="scroll-line"></div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="letter" class="min-h-screen py-24 px-6 flex items-center justify-center relative overflow-hidden">
+            <div class="absolute inset-0 bg-white/30 backdrop-blur-3xl -z-10"></div>
+
+            <div class="w-full max-w-lg mx-auto perspective-1000 reveal">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-medium tracking-tight text-slate-800 mb-2">My Dearest Najmah</h2>
+                    <p class="text-slate-500 text-sm">Tap the envelope to open</p>
+                </div>
+
+                <div class="envelope-container h-64 w-full relative group mx-auto max-w-sm" id="envelope">
+                    <div class="letter-content absolute bottom-0 left-2 right-2 bg-white p-6 shadow-xl rounded-lg border border-rose-100 h-[400px] overflow-y-auto">
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="text-xs text-rose-400 font-medium tracking-wide">14 FEB 2026</span>
+                            <iconify-icon icon="solar:heart-bold" class="text-rose-500"></iconify-icon>
+                        </div>
+                        <p class="handwritten text-2xl text-slate-800 mb-4">Dear Najmah,</p>
+                        <div class="space-y-4 text-sm leading-relaxed text-slate-600 font-light">
+                            <p>
+                                Terima kasih sudah hadir dengan cara yang sederhana tapi berarti.
+                                Kamu selalu bikin hari-hari terasa lebih tenang, lebih ringan, dan lebih baik.
+                            </p>
+                            <p>
+                                Di Valentine ini, aku cuma ingin bilang: aku menghargai setiap waktu yang kita bagi,
+                                setiap cerita kecil, dan setiap dukungan yang kamu kasih.
+                            </p>
+                            <p>
+                                Aku ingin terus belajar jadi pasangan yang lebih baik,
+                                dan tetap jalan bareng kamu, pelan-pelan tapi pasti.
+                            </p>
+                        </div>
+                        <div class="mt-8 pt-4 border-t border-rose-50">
+                            <p class="handwritten text-xl text-right text-slate-800">With love,<br>Dennis</p>
+                        </div>
+                    </div>
+
+                    <div class="envelope-body absolute inset-0 z-10">
+                        <div class="absolute inset-0 bg-rose-500 rounded-b-lg shadow-lg flex items-center justify-center">
+                            <div class="text-rose-200 opacity-50">
+                                <iconify-icon icon="solar:heart-shine-linear" width="64"></iconify-icon>
+                            </div>
+                        </div>
+                        <div class="envelope-flap absolute top-0 left-0 w-full h-1/2 bg-rose-600 rounded-t-lg shadow-md origin-top flex items-center justify-center border-b-2 border-rose-700/20">
+                            <div class="w-8 h-8 bg-rose-800 rounded-full flex items-center justify-center shadow-inner mt-8">
+                                <iconify-icon icon="solar:heart-bold" class="text-rose-200 text-xs"></iconify-icon>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="gallery" class="min-h-screen py-20 px-6 overflow-hidden bg-rose-50/50">
+            <div class="max-w-6xl mx-auto">
+                <div class="flex flex-col md:flex-row justify-between items-end mb-16 reveal">
+                    <div>
+                        <h2 class="text-3xl md:text-4xl font-medium tracking-tight text-slate-900 mb-2">Galeri Foto</h2>
+                        <p class="text-slate-500 font-light">Momen terbaik kita dalam satu ruang.</p>
+                    </div>
+                    <div class="flex gap-2 mt-4 md:mt-0">
+                        <button id="prevBtn" class="w-10 h-10 rounded-full border border-slate-200 flex items-center justify-center hover:bg-white hover:shadow-md transition text-slate-600" aria-label="Previous photo">
+                            <iconify-icon icon="solar:arrow-left-linear"></iconify-icon>
+                        </button>
+                        <button id="nextBtn" class="w-10 h-10 rounded-full border border-slate-200 flex items-center justify-center hover:bg-white hover:shadow-md transition text-slate-600" aria-label="Next photo">
+                            <iconify-icon icon="solar:arrow-right-linear"></iconify-icon>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="carousel-scene h-[400px] w-full flex items-center justify-center relative my-10 reveal">
+                    <div class="carousel w-[280px] h-[350px] md:w-[320px] md:h-[400px] relative" id="carousel">
+                        <div class="carousel-cell absolute w-full h-full bg-white p-2 rounded-2xl shadow-xl border border-white/50 gallery-clickable">
+                            <img src="asset/foto/denis.jpeg" class="w-full h-full object-cover rounded-xl" alt="Memory 1">
+                        </div>
+                        <div class="carousel-cell absolute w-full h-full bg-white p-2 rounded-2xl shadow-xl border border-white/50 gallery-clickable">
+                            <img src="asset/foto/denis1.jpeg" class="w-full h-full object-cover rounded-xl" alt="Memory 2">
+                        </div>
+                        <div class="carousel-cell absolute w-full h-full bg-white p-2 rounded-2xl shadow-xl border border-white/50 gallery-clickable">
+                            <img src="asset/foto/denis2.jpeg" class="w-full h-full object-cover rounded-xl" alt="Memory 3">
+                        </div>
+                        <div class="carousel-cell absolute w-full h-full bg-white p-2 rounded-2xl shadow-xl border border-white/50 gallery-clickable">
+                            <img src="asset/foto/denis3.jpeg" class="w-full h-full object-cover rounded-xl" alt="Memory 4">
+                        </div>
+                        <div class="carousel-cell absolute w-full h-full bg-white p-2 rounded-2xl shadow-xl border border-white/50 gallery-clickable">
+                            <img src="asset/foto/denis4.jpeg" class="w-full h-full object-cover rounded-xl" alt="Memory 5">
+                        </div>
+                        <div class="carousel-cell absolute w-full h-full bg-white p-2 rounded-2xl shadow-xl border border-white/50 gallery-clickable">
+                            <img src="asset/foto/denis5.jpeg" class="w-full h-full object-cover rounded-xl" alt="Memory 6">
+                        </div>
+                        <div class="carousel-cell absolute w-full h-full bg-white p-2 rounded-2xl shadow-xl border border-white/50 gallery-clickable">
+                            <img src="asset/foto/denis6.jpeg" class="w-full h-full object-cover rounded-xl" alt="Memory 7">
+                        </div>
+                        <div class="carousel-cell absolute w-full h-full bg-white p-2 rounded-2xl shadow-xl border border-white/50 gallery-clickable">
+                            <img src="asset/foto/denis7.jpeg" class="w-full h-full object-cover rounded-xl" alt="Memory 8">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-3 reveal">
+                    <img src="asset/foto/denis.jpeg" class="aspect-square object-cover rounded-2xl shadow-md border border-white/70 photo-hover gallery-clickable" alt="thumb 1">
+                    <img src="asset/foto/denis1.jpeg" class="aspect-square object-cover rounded-2xl shadow-md border border-white/70 photo-hover gallery-clickable" alt="thumb 2">
+                    <img src="asset/foto/denis2.jpeg" class="aspect-square object-cover rounded-2xl shadow-md border border-white/70 photo-hover gallery-clickable" alt="thumb 3">
+                    <img src="asset/foto/denis3.jpeg" class="aspect-square object-cover rounded-2xl shadow-md border border-white/70 photo-hover gallery-clickable" alt="thumb 4">
+                </div>
+            </div>
+        </section>
+
+        <section class="py-24 px-6 bg-white relative">
+            <div class="absolute inset-0 bg-gradient-to-b from-rose-50/50 to-white -z-10"></div>
+
+            <div class="max-w-5xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 auto-rows-[250px]">
+                    <div class="md:col-span-2 row-span-2 bg-gradient-to-br from-rose-50 to-white rounded-3xl p-8 md:p-12 border border-rose-100 shadow-sm flex flex-col justify-center relative overflow-hidden group reveal">
+                        <div class="absolute top-0 right-0 w-64 h-64 bg-rose-200/30 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+                        <iconify-icon icon="solar:stars-minimalistic-linear" class="text-rose-400 mb-4" width="32"></iconify-icon>
+                        <h3 class="text-3xl font-medium text-slate-800 mb-6">My Promise To You</h3>
+                        <div class="space-y-2 text-lg text-slate-600 font-light">
+                            <p>Aku akan tetap jujur dan hadir untukmu.</p>
+                            <p>Aku akan jaga komunikasi kita dengan baik.</p>
+                            <p>Aku akan terus belajar jadi versi terbaik untuk kita.</p>
+                            <p>Dan aku ingin terus bertumbuh bareng kamu.</p>
+                        </div>
+                        <div class="mt-8 flex items-center gap-4">
+                            <div class="h-px bg-rose-200 w-16"></div>
+                            <span class="handwritten text-2xl text-rose-500">Forever Yours</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-200 rounded-3xl overflow-hidden relative group reveal">
+                        <img src="asset/foto/denis4.jpeg" class="w-full h-full object-cover transition duration-700 group-hover:scale-110" alt="Us">
+                        <div class="absolute inset-0 bg-black/10 group-hover:bg-transparent transition"></div>
+                    </div>
+
+                    <div class="bg-slate-200 rounded-3xl overflow-hidden relative group reveal">
+                        <img src="asset/foto/denis5.jpeg" class="w-full h-full object-cover transition duration-700 group-hover:scale-110" alt="Us">
+                    </div>
+
+                    <div class="md:col-span-1 bg-slate-900 rounded-3xl p-8 flex flex-col items-center justify-center text-center text-white relative overflow-hidden reveal">
+                        <div class="absolute inset-0 bg-rose-500/20 blur-xl"></div>
+                        <h4 class="text-6xl font-medium mb-1 z-10 count-pulse">14</h4>
+                        <p class="text-rose-200 tracking-widest uppercase text-xs z-10">February 2026</p>
+                        <div class="mt-4 px-4 py-1 rounded-full border border-white/20 text-xs text-white/80 z-10 backdrop-blur-md">
+                            Thank you for being here.
+                        </div>
+                    </div>
+
+                    <div class="md:col-span-2 bg-rose-500 rounded-3xl p-8 flex items-center justify-between text-white relative overflow-hidden group reveal">
+                        <div class="relative z-10">
+                            <p class="text-rose-200 text-sm font-medium tracking-wide mb-2">WITH ALL MY HEART</p>
+                            <h3 class="text-3xl font-medium">I Love You, Najmah.</h3>
+                        </div>
+                        <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm group-hover:scale-110 transition duration-300">
+                            <iconify-icon icon="solar:heart-bold" width="32"></iconify-icon>
+                        </div>
+                        <div class="absolute -bottom-10 -right-10 w-48 h-48 bg-rose-400 rounded-full blur-2xl opacity-50"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-backdrop" id="lightboxBackdrop"></div>
+        <button class="lightbox-close" id="lightboxClose" aria-label="Close">
+            <iconify-icon icon="solar:close-circle-linear" width="24"></iconify-icon>
+        </button>
+        <button class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="Previous">
+            <iconify-icon icon="solar:arrow-left-linear" width="20"></iconify-icon>
+        </button>
+        <img class="lightbox-img" id="lightboxImg" src="" alt="Preview">
+        <button class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="Next">
+            <iconify-icon icon="solar:arrow-right-linear" width="20"></iconify-icon>
+        </button>
+        <div class="lightbox-counter" id="lightboxCounter"></div>
+    </div>
+
+        <footer class="py-12 text-center text-slate-400 text-sm font-light relative z-10">
+            <p>Made with ❤️ by Dennis for Najmah</p>
+            <div class="mt-2">
+                <iconify-icon icon="solar:infinity-linear" width="24"></iconify-icon>
+            </div>
+        </footer>
+    </main>
+
+    <script>
+        // Force scroll to top on load/refresh
+        history.scrollRestoration = 'manual';
+        window.scrollTo(0, 0);
+
+        window.addEventListener('load', () => {
+            window.scrollTo(0, 0);
+            setTimeout(() => {
+                const loader = document.getElementById('loader');
+                loader.style.opacity = '0';
+                loader.style.visibility = 'hidden';
+                setTimeout(() => document.body.classList.add('loaded'), 500);
+            }, 1200);
+        });
+
+        const observerOptions = { threshold: 0.1 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        const playBtn = document.getElementById('playBtn');
+        const playIcon = document.getElementById('playIcon');
+        const audio = document.getElementById('bgMusic');
+        const disk = document.getElementById('disk');
+        const visualizer = document.getElementById('visualizer');
+
+        let isPlaying = false;
+
+        function togglePlay() {
+            if (isPlaying) {
+                audio.pause();
+                disk.classList.add('paused');
+                visualizer.classList.add('paused');
+                playIcon.setAttribute('icon', 'solar:play-circle-linear');
+            } else {
+                audio.play().catch(() => {});
+                disk.classList.remove('paused');
+                visualizer.classList.remove('paused');
+                playIcon.setAttribute('icon', 'solar:pause-circle-linear');
+            }
+            isPlaying = !isPlaying;
+        }
+
+        playBtn.addEventListener('click', togglePlay);
+
+        const envelope = document.getElementById('envelope');
+        envelope.addEventListener('click', () => {
+            envelope.classList.toggle('open');
+        });
+
+        const carousel = document.getElementById('carousel');
+        const cells = document.querySelectorAll('.carousel-cell');
+        const cellCount = cells.length;
+        let selectedIndex = 0;
+
+        function getRadius() {
+            const cellWidth = carousel.offsetWidth;
+            return Math.round((cellWidth / 2) / Math.tan(Math.PI / cellCount));
+        }
+
+        const theta = 360 / cellCount;
+
+        function setCarouselCells(radius) {
+            cells.forEach((cell, i) => {
+                cell.style.transform = `rotateY(${theta * i}deg) translateZ(${radius}px)`;
+            });
+        }
+
+        function rotateCarousel() {
+            const radius = getRadius();
+            const angle = theta * selectedIndex * -1;
+            carousel.style.transform = `translateZ(-${radius}px) rotateY(${angle}deg)`;
+        }
+
+        function initCarousel() {
+            const radius = getRadius();
+            setCarouselCells(radius);
+            rotateCarousel();
+        }
+
+        initCarousel();
+
+        document.getElementById('prevBtn').addEventListener('click', () => {
+            selectedIndex--;
+            rotateCarousel();
+        });
+
+        document.getElementById('nextBtn').addEventListener('click', () => {
+            selectedIndex++;
+            rotateCarousel();
+        });
+
+        let autoSlide = setInterval(() => {
+            selectedIndex++;
+            rotateCarousel();
+        }, 3500);
+
+        function resetAutoSlide() {
+            clearInterval(autoSlide);
+            autoSlide = setInterval(() => {
+                selectedIndex++;
+                rotateCarousel();
+            }, 3500);
+        }
+
+        document.getElementById('prevBtn').addEventListener('click', resetAutoSlide);
+        document.getElementById('nextBtn').addEventListener('click', resetAutoSlide);
+
+        window.addEventListener('resize', initCarousel);
+
+        const scene3d = document.getElementById('scene3d');
+        const sceneLayers = document.querySelectorAll('#scene3d [data-depth]');
+
+        window.addEventListener('mousemove', (e) => {
+            if (!scene3d || window.innerWidth < 768) return;
+            const mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
+            const mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
+
+            scene3d.style.transform = `rotateX(${mouseY * -2.8}deg) rotateY(${mouseX * 2.8}deg)`;
+
+            sceneLayers.forEach((layer) => {
+                const depth = parseFloat(layer.dataset.depth || '0.5');
+                layer.style.translate = `${mouseX * depth * 16}px ${mouseY * depth * 16}px`;
+            });
+        });
+
+        // ═══ Particle System ═══
+        const cvs = document.getElementById('particles');
+        const ctx = cvs.getContext('2d');
+
+        function resizeCanvas() {
+            cvs.width = window.innerWidth;
+            cvs.height = window.innerHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        class Particle {
+            constructor() { this.reset(); this.y = Math.random() * cvs.height; }
+
+            reset() {
+                this.x = Math.random() * cvs.width;
+                this.y = cvs.height + 20;
+                this.size = Math.random() * 5 + 2;
+                this.speedY = Math.random() * 0.6 + 0.2;
+                this.speedX = (Math.random() - 0.5) * 0.4;
+                this.opacity = Math.random() * 0.35 + 0.08;
+                this.isHeart = Math.random() > 0.55;
+                this.rotation = Math.random() * Math.PI * 2;
+                this.rotationSpeed = (Math.random() - 0.5) * 0.015;
+                this.wobble = Math.random() * Math.PI * 2;
+                this.wobbleSpeed = Math.random() * 0.015 + 0.008;
+            }
+
+            update() {
+                this.y -= this.speedY;
+                this.wobble += this.wobbleSpeed;
+                this.x += this.speedX + Math.sin(this.wobble) * 0.25;
+                this.rotation += this.rotationSpeed;
+                if (this.y < -20) this.reset();
+            }
+
+            draw() {
+                ctx.save();
+                ctx.globalAlpha = this.opacity;
+                ctx.translate(this.x, this.y);
+                ctx.rotate(this.rotation);
+                if (this.isHeart) {
+                    const s = this.size;
+                    ctx.beginPath();
+                    ctx.moveTo(0, s * 0.3);
+                    ctx.bezierCurveTo(-s * 0.5, -s * 0.3, -s, s * 0.2, 0, s);
+                    ctx.bezierCurveTo(s, s * 0.2, s * 0.5, -s * 0.3, 0, s * 0.3);
+                    ctx.fillStyle = '#fb7185';
+                    ctx.fill();
+                } else {
+                    ctx.beginPath();
+                    ctx.arc(0, 0, this.size * 0.4, 0, Math.PI * 2);
+                    ctx.fillStyle = '#fda4af';
+                    ctx.fill();
+                }
+                ctx.restore();
+            }
+        }
+
+        const pCount = window.innerWidth < 768 ? 15 : 30;
+        const pts = Array.from({ length: pCount }, () => new Particle());
+
+        (function drawParticles() {
+            ctx.clearRect(0, 0, cvs.width, cvs.height);
+            pts.forEach(p => { p.update(); p.draw(); });
+            requestAnimationFrame(drawParticles);
+        })();
+
+        // ═══ Lightbox ═══
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightboxImg');
+        const lightboxCounter = document.getElementById('lightboxCounter');
+        const allGalleryPhotos = [
+            'asset/foto/denis.jpeg', 'asset/foto/denis1.jpeg',
+            'asset/foto/denis2.jpeg', 'asset/foto/denis3.jpeg',
+            'asset/foto/denis4.jpeg', 'asset/foto/denis5.jpeg',
+            'asset/foto/denis6.jpeg', 'asset/foto/denis7.jpeg'
+        ];
+        let lightboxIndex = 0;
+
+        function openLightbox(src) {
+            lightboxIndex = allGalleryPhotos.indexOf(src);
+            if (lightboxIndex === -1) lightboxIndex = 0;
+            lightboxImg.src = allGalleryPhotos[lightboxIndex];
+            lightboxCounter.textContent = `${lightboxIndex + 1} / ${allGalleryPhotos.length}`;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function lightboxNav(dir) {
+            lightboxIndex = (lightboxIndex + dir + allGalleryPhotos.length) % allGalleryPhotos.length;
+            lightboxImg.src = allGalleryPhotos[lightboxIndex];
+            lightboxCounter.textContent = `${lightboxIndex + 1} / ${allGalleryPhotos.length}`;
+        }
+
+        document.querySelectorAll('.gallery-clickable').forEach(el => {
+            el.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const img = el.querySelector('img') || el;
+                openLightbox(img.src.replace(/^.*\/asset\//, 'asset/'));
+            });
+        });
+
+        document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+        document.getElementById('lightboxBackdrop').addEventListener('click', closeLightbox);
+        document.getElementById('lightboxPrev').addEventListener('click', () => lightboxNav(-1));
+        document.getElementById('lightboxNext').addEventListener('click', () => lightboxNav(1));
+
+        document.addEventListener('keydown', (e) => {
+            if (!lightbox.classList.contains('active')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') lightboxNav(-1);
+            if (e.key === 'ArrowRight') lightboxNav(1);
+        });
+
+        // ═══ Cursor Glow ═══
+        const glow = document.getElementById('cursorGlow');
+        if (window.innerWidth >= 768) {
+            glow.style.display = 'block';
+            document.addEventListener('mousemove', e => {
+                glow.style.left = e.clientX + 'px';
+                glow.style.top = e.clientY + 'px';
+            });
+        }
+    </script>
+</body>
+</html>
