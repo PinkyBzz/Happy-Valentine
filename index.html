@@ -105,12 +105,18 @@
         .carousel-scene {
             perspective: 1000px;
             touch-action: pan-y;
+            cursor: grab;
+            user-select: none;
         }
+
+        .carousel-scene.dragging { cursor: grabbing; }
 
         .carousel {
             transform-style: preserve-3d;
             transition: transform 1s;
         }
+
+        .carousel.no-transition { transition: none; }
 
         .carousel-cell {
             position: absolute;
@@ -372,7 +378,8 @@
         body.loaded .entrance.delay-5 { animation-delay: 1.3s; }
 
         @keyframes entranceFade {
-            to { opacity: 1; transform: translateY(0) scale(1); }
+            0% { filter: blur(8px); }
+            to { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
         }
 
         /* ═══ Shimmer Text ═══ */
@@ -572,6 +579,261 @@
             .lightbox-prev { left: 10px; }
             .lightbox-next { right: 10px; }
         }
+
+        /* ═══ Opening Cinematic ═══ */
+        .cinematic-text {
+            display: inline-block;
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 2px solid #f43f5e;
+            max-width: 0;
+            animation: typing 1.8s steps(26, end) 0.3s forwards, blink-caret 0.7s step-end 0.3s infinite;
+        }
+        @keyframes typing { to { max-width: 500px; } }
+        @keyframes blink-caret { from, to { border-color: transparent; } 50% { border-color: #f43f5e; } }
+        html[data-theme="dark"] .cinematic-text { border-right-color: #fb7185; }
+
+        /* ═══ Theme System ═══ */
+        html.theme-transition,
+        html.theme-transition *,
+        html.theme-transition *::before,
+        html.theme-transition *::after {
+            transition: all 0.5s ease !important;
+        }
+        html.theme-transition .bar,
+        html.theme-transition .spin-vinyl,
+        html.theme-transition .carousel,
+        html.theme-transition .scroll-line,
+        html.theme-transition .loader-heart {
+            transition: none !important;
+        }
+
+        html[data-theme="dark"] body {
+            background-color: #1a0a10;
+            background-image:
+                radial-gradient(at 0% 0%, hsla(350,60%,15%,1) 0, transparent 50%),
+                radial-gradient(at 100% 0%, hsla(335,50%,12%,1) 0, transparent 50%),
+                radial-gradient(at 100% 100%, hsla(350,55%,14%,1) 0, transparent 50%),
+                radial-gradient(at 0% 100%, hsla(335,55%,13%,1) 0, transparent 50%);
+            color: #e8d5db;
+        }
+        html[data-theme="dark"] #loader { background: #1a0a10; }
+        html[data-theme="dark"] .loader-heart { color: #fb7185; }
+        html[data-theme="dark"] .text-rose-400 { color: #fda4af !important; }
+        html[data-theme="dark"] .intro-chip {
+            background: rgba(40,15,25,0.75);
+            border-color: rgba(255,255,255,0.12);
+            color: #fda4af;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        html[data-theme="dark"] .hero-title {
+            background: linear-gradient(135deg, #fda4af 0%, #fb7185 30%, #f43f5e 60%, #fda4af 100%);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            filter: drop-shadow(0 4px 20px rgba(251,113,133,0.3));
+        }
+        html[data-theme="dark"] .shimmer {
+            background: linear-gradient(110deg, #fb7185 20%, #fda4af 40%, #fff1f2 50%, #fda4af 60%, #fb7185 80%);
+            background-size: 200% 100%;
+            -webkit-background-clip: text;
+            background-clip: text;
+        }
+        html[data-theme="dark"] #letter > .absolute { background: rgba(26,10,16,0.3) !important; }
+        html[data-theme="dark"] .envelope-body > div:first-child { background: #9f1239 !important; }
+        html[data-theme="dark"] .envelope-flap { background: #881337 !important; }
+        html[data-theme="dark"] .letter-content {
+            background: #2a1520 !important;
+            border-color: rgba(251,113,133,0.15) !important;
+        }
+        html[data-theme="dark"] h2, html[data-theme="dark"] h3 { color: #fce7f3 !important; }
+        html[data-theme="dark"] .text-slate-500 { color: #c4899e !important; }
+        html[data-theme="dark"] .text-slate-600 { color: #d4a0b0 !important; }
+        html[data-theme="dark"] .text-slate-700 { color: #e0b8c6 !important; }
+        html[data-theme="dark"] .text-slate-800 { color: #f0dce3 !important; }
+        html[data-theme="dark"] .text-slate-900 { color: #fce7f3 !important; }
+        html[data-theme="dark"] #gallery { background: rgba(26,10,16,0.5) !important; }
+        html[data-theme="dark"] .carousel-cell {
+            background: rgba(40,15,25,0.85) !important;
+            border-color: rgba(255,255,255,0.06) !important;
+        }
+        html[data-theme="dark"] .photo-hover { border-color: rgba(255,255,255,0.06) !important; }
+        html[data-theme="dark"] section.bg-white { background: #1f0d15 !important; }
+        html[data-theme="dark"] .bg-gradient-to-br.from-rose-50 {
+            background: linear-gradient(to bottom right, rgba(40,15,25,0.8), rgba(30,10,18,0.9)) !important;
+        }
+        html[data-theme="dark"] .border-rose-100 { border-color: rgba(251,113,133,0.12) !important; }
+        html[data-theme="dark"] #musicContainer {
+            background: rgba(40,15,25,0.85) !important;
+            border-color: rgba(255,255,255,0.08) !important;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3) !important;
+        }
+        html[data-theme="dark"] .border-slate-200 { border-color: rgba(251,113,133,0.15) !important; }
+        html[data-theme="dark"] footer p { color: #7f4f60 !important; }
+        html[data-theme="dark"] ::-webkit-scrollbar-thumb { background: #6b2140; }
+        html[data-theme="dark"] .ring {
+            border-color: rgba(251,113,133,0.2);
+            box-shadow: inset 0 0 50px rgba(251,113,133,0.1), 0 0 80px rgba(244,63,94,0.15);
+        }
+        html[data-theme="dark"] .blob {
+            background: linear-gradient(145deg, rgba(244,63,94,0.35), rgba(219,39,119,0.2));
+        }
+        html[data-theme="dark"] .cube-wrap span {
+            background: rgba(251,113,133,0.15);
+            border-color: rgba(251,113,133,0.25);
+        }
+        html[data-theme="dark"] .bg-rose-500 { background-color: #9f1239 !important; }
+        html[data-theme="dark"] .bg-slate-900 { background-color: #0d0509 !important; }
+
+        .theme-toggle {
+            width: 32px; height: 32px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            background: transparent; border: none;
+            color: #fb7185; cursor: pointer;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+        .theme-toggle:hover { transform: scale(1.2) rotate(15deg); }
+        html[data-theme="dark"] .theme-toggle { color: #fbbf24; }
+
+        /* ═══ Micro-interactions ═══ */
+        .ripple-effect {
+            position: absolute; border-radius: 50%;
+            background: rgba(244,63,94,0.2);
+            transform: scale(0);
+            animation: rippleAnim 0.6s ease-out forwards;
+            pointer-events: none; z-index: 100;
+        }
+        html[data-theme="dark"] .ripple-effect { background: rgba(251,113,133,0.15); }
+        @keyframes rippleAnim { to { transform: scale(4); opacity: 0; } }
+
+        /* ═══ Lightbox Pro ═══ */
+        .lightbox-img { touch-action: pan-y; }
+        .lightbox-img.zoomed { transform: scale(2) !important; cursor: zoom-out; transition: transform 0.3s ease; }
+        .lightbox-slide-left { animation: lbSlideLeft 0.35s cubic-bezier(0.16, 1, 0.3, 1); }
+        .lightbox-slide-right { animation: lbSlideRight 0.35s cubic-bezier(0.16, 1, 0.3, 1); }
+        @keyframes lbSlideLeft {
+            0% { opacity: 0.3; transform: translateX(50px) scale(0.96); }
+            100% { opacity: 1; transform: translateX(0) scale(1); }
+        }
+        @keyframes lbSlideRight {
+            0% { opacity: 0.3; transform: translateX(-50px) scale(0.96); }
+            100% { opacity: 1; transform: translateX(0) scale(1); }
+        }
+        .lightbox-zoom-hint {
+            position: absolute; bottom: 56px; left: 50%;
+            transform: translateX(-50%); z-index: 2;
+            color: rgba(255,255,255,0.4); font-size: 11px;
+            letter-spacing: 0.08em; pointer-events: none;
+        }
+
+        /* ═══ Music UX ═══ */
+        .music-progress-wrap {
+            position: absolute; bottom: 4px; left: 14px; right: 14px;
+            height: 2px; background: rgba(244,63,94,0.12);
+            border-radius: 4px; cursor: pointer; overflow: hidden;
+        }
+        .music-progress-bar {
+            height: 100%; width: 0%;
+            background: linear-gradient(90deg, #f43f5e, #ec4899);
+            border-radius: 4px; transition: width 0.25s linear;
+        }
+        .music-time {
+            font-size: 9px; color: rgba(244,63,94,0.6);
+            font-variant-numeric: tabular-nums; min-width: 30px;
+            text-align: center;
+        }
+        html[data-theme="dark"] .music-progress-wrap { background: rgba(251,113,133,0.1); }
+        html[data-theme="dark"] .music-time { color: rgba(251,113,133,0.5); }
+
+        /* ═══ Performance ═══ */
+        .scene-3d { will-change: transform; }
+        .carousel { will-change: transform; }
+        #cursorGlow { will-change: left, top; }
+        /* ═══ Floating Nav ═══ */
+        .floating-nav {
+            position: fixed;
+            bottom: 28px;
+            left: 50%;
+            transform: translateX(-50%) translateY(0);
+            z-index: 40;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s;
+        }
+        .floating-nav.nav-hidden {
+            transform: translateX(-50%) translateY(calc(100% + 40px));
+            opacity: 0;
+        }
+        .floating-nav-inner {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            padding: 8px 10px;
+            background: rgba(255,255,255,0.82);
+            backdrop-filter: blur(20px) saturate(1.6);
+            border: 1px solid rgba(255,255,255,0.5);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(190,24,93,0.1), 0 2px 8px rgba(0,0,0,0.05);
+        }
+        .nav-item {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+            padding: 8px 14px;
+            border-radius: 14px;
+            color: #9ca3af;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            background: transparent;
+        }
+        .nav-item:hover { color: #f43f5e; background: rgba(244,63,94,0.06); }
+        .nav-item.active {
+            color: #f43f5e;
+            background: rgba(244,63,94,0.1);
+        }
+        .nav-item.active::after {
+            content: '';
+            position: absolute;
+            bottom: 4px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: #f43f5e;
+        }
+        .nav-label {
+            font-size: 9px;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            line-height: 1;
+        }
+        .nav-divider {
+            width: 1px;
+            height: 28px;
+            background: linear-gradient(to bottom, transparent, rgba(244,63,94,0.15), transparent);
+            margin: 0 2px;
+        }
+        html[data-theme="dark"] .floating-nav-inner {
+            background: rgba(30,12,20,0.88) !important;
+            border-color: rgba(251,113,133,0.1) !important;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3), 0 0 0 1px rgba(251,113,133,0.05);
+        }
+        html[data-theme="dark"] .nav-item { color: #6b7280; }
+        html[data-theme="dark"] .nav-item:hover { color: #fb7185; background: rgba(251,113,133,0.08); }
+        html[data-theme="dark"] .nav-item.active { color: #fb7185; background: rgba(251,113,133,0.12); }
+        html[data-theme="dark"] .nav-item.active::after { background: #fb7185; }
+        html[data-theme="dark"] .theme-toggle { color: #fbbf24; }
+
+        @media (max-width: 640px) {
+            .floating-nav { bottom: 16px; }
+            .floating-nav-inner { padding: 6px 8px; gap: 2px; }
+            .nav-item { padding: 7px 11px; }
+            .nav-label { font-size: 8px; }
+        }
     </style>
 </head>
 <body class="text-slate-700 antialiased selection:bg-rose-200 selection:text-rose-900">
@@ -589,15 +851,15 @@
             </div>
         </div>
         <div class="flex flex-col items-center gap-2">
-            <p class="text-[11px] font-medium tracking-[0.3em] uppercase text-rose-400">Preparing something special</p>
+            <p class="cinematic-text text-[11px] font-medium tracking-[0.3em] uppercase text-rose-400">Preparing something special</p>
             <div class="w-24 h-0.5 rounded-full bg-rose-200/50 overflow-hidden">
                 <div class="h-full bg-rose-400 rounded-full" style="animation: loadBar 1.5s ease-in-out infinite;"></div>
             </div>
         </div>
     </div>
 
-    <div class="fixed bottom-6 right-6 z-50 animate-float-delayed">
-        <div class="bg-white/80 backdrop-blur-xl border border-white/50 p-2 pr-4 rounded-full shadow-lg shadow-rose-200/50 flex items-center gap-3 transition-all duration-300 hover:scale-105 group" id="musicContainer">
+    <div class="fixed top-6 right-6 z-50 animate-float-delayed">
+        <div class="relative bg-white/80 backdrop-blur-xl border border-white/50 p-2 pr-4 pb-3 rounded-3xl shadow-lg shadow-rose-200/50 flex items-center gap-3 transition-all duration-300 hover:scale-105 group" id="musicContainer">
             <div class="relative w-10 h-10 flex items-center justify-center bg-rose-100 rounded-full overflow-hidden spin-vinyl paused" id="disk">
                 <div class="absolute inset-0 bg-[url('asset/foto/denis1.jpeg')] bg-cover bg-center opacity-80"></div>
                 <div class="w-3 h-3 bg-white rounded-full z-10 border border-gray-200"></div>
@@ -611,20 +873,38 @@
                     <span class="bar"></span>
                 </div>
             </div>
+            <span class="music-time" id="musicTime">0:00</span>
             <button id="playBtn" class="ml-2 text-rose-500 hover:text-rose-600 transition-colors" aria-label="Play music">
                 <iconify-icon icon="solar:play-circle-linear" width="28" id="playIcon"></iconify-icon>
             </button>
+            <div class="music-progress-wrap" id="musicProgress">
+                <div class="music-progress-bar" id="musicProgressBar"></div>
+            </div>
         </div>
         <audio id="bgMusic" loop>
             <source src="asset/lagu/LANY - you (Lyrics).mp3" type="audio/mpeg">
         </audio>
     </div>
 
-    <nav class="fixed top-6 left-1/2 -translate-x-1/2 z-40">
-        <div class="bg-white/70 backdrop-blur-md border border-white/40 px-6 py-3 rounded-full shadow-sm flex gap-6 items-center">
-            <a href="#home" class="text-rose-400 hover:text-rose-600 transition-colors" aria-label="Home"><iconify-icon icon="solar:home-smile-linear" width="20"></iconify-icon></a>
-            <a href="#letter" class="text-rose-400 hover:text-rose-600 transition-colors" aria-label="Letter"><iconify-icon icon="solar:letter-linear" width="20"></iconify-icon></a>
-            <a href="#gallery" class="text-rose-400 hover:text-rose-600 transition-colors" aria-label="Gallery"><iconify-icon icon="solar:gallery-wide-linear" width="20"></iconify-icon></a>
+    <nav class="floating-nav" id="floatingNav">
+        <div class="floating-nav-inner">
+            <a href="#home" class="nav-item active" data-section="home" aria-label="Home">
+                <iconify-icon icon="solar:home-smile-linear" width="20"></iconify-icon>
+                <span class="nav-label">Home</span>
+            </a>
+            <a href="#letter" class="nav-item" data-section="letter" aria-label="Letter">
+                <iconify-icon icon="solar:letter-linear" width="20"></iconify-icon>
+                <span class="nav-label">Letter</span>
+            </a>
+            <a href="#gallery" class="nav-item" data-section="gallery" aria-label="Gallery">
+                <iconify-icon icon="solar:gallery-wide-linear" width="20"></iconify-icon>
+                <span class="nav-label">Gallery</span>
+            </a>
+            <div class="nav-divider"></div>
+            <button class="nav-item theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                <iconify-icon icon="solar:moon-linear" width="18" id="themeIcon"></iconify-icon>
+                <span class="nav-label">Theme</span>
+            </button>
         </div>
     </nav>
 
@@ -775,10 +1055,10 @@
                 </div>
 
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-3 reveal">
-                    <img src="asset/foto/denis.jpeg" class="aspect-square object-cover rounded-2xl shadow-md border border-white/70 photo-hover gallery-clickable" alt="thumb 1">
-                    <img src="asset/foto/denis1.jpeg" class="aspect-square object-cover rounded-2xl shadow-md border border-white/70 photo-hover gallery-clickable" alt="thumb 2">
-                    <img src="asset/foto/denis2.jpeg" class="aspect-square object-cover rounded-2xl shadow-md border border-white/70 photo-hover gallery-clickable" alt="thumb 3">
-                    <img src="asset/foto/denis3.jpeg" class="aspect-square object-cover rounded-2xl shadow-md border border-white/70 photo-hover gallery-clickable" alt="thumb 4">
+                    <img loading="lazy" src="asset/foto/denis.jpeg" class="aspect-square object-cover rounded-2xl shadow-md border border-white/70 photo-hover gallery-clickable" alt="thumb 1">
+                    <img loading="lazy" src="asset/foto/denis1.jpeg" class="aspect-square object-cover rounded-2xl shadow-md border border-white/70 photo-hover gallery-clickable" alt="thumb 2">
+                    <img loading="lazy" src="asset/foto/denis2.jpeg" class="aspect-square object-cover rounded-2xl shadow-md border border-white/70 photo-hover gallery-clickable" alt="thumb 3">
+                    <img loading="lazy" src="asset/foto/denis3.jpeg" class="aspect-square object-cover rounded-2xl shadow-md border border-white/70 photo-hover gallery-clickable" alt="thumb 4">
                 </div>
             </div>
         </section>
@@ -805,12 +1085,12 @@
                     </div>
 
                     <div class="bg-slate-200 rounded-3xl overflow-hidden relative group reveal">
-                        <img src="asset/foto/denis4.jpeg" class="w-full h-full object-cover transition duration-700 group-hover:scale-110" alt="Us">
+                        <img loading="lazy" src="asset/foto/denis4.jpeg" class="w-full h-full object-cover transition duration-700 group-hover:scale-110" alt="Us">
                         <div class="absolute inset-0 bg-black/10 group-hover:bg-transparent transition"></div>
                     </div>
 
                     <div class="bg-slate-200 rounded-3xl overflow-hidden relative group reveal">
-                        <img src="asset/foto/denis5.jpeg" class="w-full h-full object-cover transition duration-700 group-hover:scale-110" alt="Us">
+                        <img loading="lazy" src="asset/foto/denis5.jpeg" class="w-full h-full object-cover transition duration-700 group-hover:scale-110" alt="Us">
                     </div>
 
                     <div class="md:col-span-1 bg-slate-900 rounded-3xl p-8 flex flex-col items-center justify-center text-center text-white relative overflow-hidden reveal">
@@ -849,6 +1129,7 @@
             <iconify-icon icon="solar:arrow-right-linear" width="20"></iconify-icon>
         </button>
         <div class="lightbox-counter" id="lightboxCounter"></div>
+        <span class="lightbox-zoom-hint">Double-tap to zoom</span>
     </div>
 
         <footer class="py-12 text-center text-slate-400 text-sm font-light relative z-10">
@@ -871,7 +1152,7 @@
                 loader.style.opacity = '0';
                 loader.style.visibility = 'hidden';
                 setTimeout(() => document.body.classList.add('loaded'), 500);
-            }, 1200);
+            }, 2200);
         });
 
         const observerOptions = { threshold: 0.1 };
@@ -971,33 +1252,71 @@
         }
 
         const carouselScene = document.querySelector('.carousel-scene');
-        let swipeStartX = 0;
-        let swipeDeltaX = 0;
+        let isDragging = false;
+        let dragStartX = 0;
+        let dragDeltaX = 0;
+        let baseAngle = 0;
+
+        function startDrag(x) {
+            isDragging = true;
+            dragStartX = x;
+            dragDeltaX = 0;
+            baseAngle = theta * selectedIndex * -1;
+            carousel.classList.add('no-transition');
+            carouselScene.classList.add('dragging');
+            clearInterval(autoSlide);
+        }
+
+        function moveDrag(x) {
+            if (!isDragging) return;
+            dragDeltaX = x - dragStartX;
+            const dragAngle = (dragDeltaX / carouselScene.offsetWidth) * theta * 2;
+            const radius = getRadius();
+            carousel.style.transform = `translateZ(-${radius}px) rotateY(${baseAngle + dragAngle}deg)`;
+        }
+
+        function endDrag() {
+            if (!isDragging) return;
+            isDragging = false;
+            carousel.classList.remove('no-transition');
+            carouselScene.classList.remove('dragging');
+
+            if (Math.abs(dragDeltaX) > 40) {
+                if (dragDeltaX < 0) selectedIndex++;
+                else selectedIndex--;
+            }
+
+            rotateCarousel();
+            resetAutoSlide();
+            dragDeltaX = 0;
+        }
 
         if (carouselScene) {
+            // Touch events
             carouselScene.addEventListener('touchstart', (e) => {
                 if (!e.touches.length) return;
-                swipeStartX = e.touches[0].clientX;
-                swipeDeltaX = 0;
+                startDrag(e.touches[0].clientX);
             }, { passive: true });
 
             carouselScene.addEventListener('touchmove', (e) => {
                 if (!e.touches.length) return;
-                swipeDeltaX = e.touches[0].clientX - swipeStartX;
+                moveDrag(e.touches[0].clientX);
             }, { passive: true });
 
-            carouselScene.addEventListener('touchend', () => {
-                if (Math.abs(swipeDeltaX) < 45) return;
+            carouselScene.addEventListener('touchend', endDrag);
 
-                if (swipeDeltaX < 0) {
-                    selectedIndex++;
-                } else {
-                    selectedIndex--;
-                }
+            // Mouse drag events
+            carouselScene.addEventListener('mousedown', (e) => {
+                e.preventDefault();
+                startDrag(e.clientX);
+            });
 
-                rotateCarousel();
-                resetAutoSlide();
-                swipeDeltaX = 0;
+            window.addEventListener('mousemove', (e) => {
+                if (isDragging) moveDrag(e.clientX);
+            });
+
+            window.addEventListener('mouseup', () => {
+                if (isDragging) endDrag();
             });
         }
 
@@ -1106,6 +1425,8 @@
             lightboxIndex = allGalleryPhotos.indexOf(src);
             if (lightboxIndex === -1) lightboxIndex = 0;
             lightboxImg.src = allGalleryPhotos[lightboxIndex];
+            lightboxImg.classList.remove('zoomed');
+            lightboxImg.style.transformOrigin = '';
             lightboxCounter.textContent = `${lightboxIndex + 1} / ${allGalleryPhotos.length}`;
             lightbox.classList.add('active');
             document.body.style.overflow = 'hidden';
@@ -1114,12 +1435,19 @@
         function closeLightbox() {
             lightbox.classList.remove('active');
             document.body.style.overflow = '';
+            lightboxImg.classList.remove('zoomed');
+            lightboxImg.style.transformOrigin = '';
         }
 
         function lightboxNav(dir) {
             lightboxIndex = (lightboxIndex + dir + allGalleryPhotos.length) % allGalleryPhotos.length;
+            const animClass = dir > 0 ? 'lightbox-slide-left' : 'lightbox-slide-right';
+            lightboxImg.classList.add(animClass);
+            lightboxImg.classList.remove('zoomed');
+            lightboxImg.style.transformOrigin = '';
             lightboxImg.src = allGalleryPhotos[lightboxIndex];
             lightboxCounter.textContent = `${lightboxIndex + 1} / ${allGalleryPhotos.length}`;
+            setTimeout(() => lightboxImg.classList.remove(animClass), 350);
         }
 
         document.querySelectorAll('.gallery-clickable').forEach(el => {
@@ -1151,6 +1479,172 @@
                 glow.style.top = e.clientY + 'px';
             });
         }
+
+        // ═══ Theme Toggle ═══
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+        (function initTheme() {
+            const saved = localStorage.getItem('valentine-theme');
+            if (saved) {
+                document.documentElement.setAttribute('data-theme', saved);
+                if (saved === 'dark') themeIcon.setAttribute('icon', 'solar:sun-bold');
+            }
+        })();
+
+        themeToggle.addEventListener('click', () => {
+            document.documentElement.classList.add('theme-transition');
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            const next = isDark ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', next);
+            localStorage.setItem('valentine-theme', next);
+            themeIcon.setAttribute('icon', next === 'dark' ? 'solar:sun-bold' : 'solar:moon-linear');
+            setTimeout(() => document.documentElement.classList.remove('theme-transition'), 600);
+        });
+
+        // ═══ Music Progress ═══
+        const musicProgressBar = document.getElementById('musicProgressBar');
+        const musicTimeEl = document.getElementById('musicTime');
+        const musicProgressWrap = document.getElementById('musicProgress');
+
+        function formatTime(s) {
+            const m = Math.floor(s / 60);
+            const sec = Math.floor(s % 60);
+            return m + ':' + sec.toString().padStart(2, '0');
+        }
+
+        audio.addEventListener('timeupdate', () => {
+            if (!audio.duration) return;
+            musicProgressBar.style.width = ((audio.currentTime / audio.duration) * 100) + '%';
+            musicTimeEl.textContent = formatTime(audio.currentTime);
+        });
+
+        musicProgressWrap.addEventListener('click', (e) => {
+            if (!audio.duration) return;
+            const rect = musicProgressWrap.getBoundingClientRect();
+            audio.currentTime = ((e.clientX - rect.left) / rect.width) * audio.duration;
+        });
+
+        // ═══ Micro-interactions: Ripple ═══
+        function addRipple(e, el) {
+            const ripple = document.createElement('span');
+            ripple.classList.add('ripple-effect');
+            const rect = el.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            ripple.style.width = ripple.style.height = size + 'px';
+            ripple.style.left = (e.clientX - rect.left - size / 2) + 'px';
+            ripple.style.top = (e.clientY - rect.top - size / 2) + 'px';
+            if (getComputedStyle(el).position === 'static') el.style.position = 'relative';
+            el.style.overflow = 'hidden';
+            el.appendChild(ripple);
+            ripple.addEventListener('animationend', () => ripple.remove());
+        }
+
+        document.querySelectorAll('#prevBtn, #nextBtn, #playBtn, .theme-toggle, .lightbox-close, .lightbox-nav').forEach(btn => {
+            btn.addEventListener('click', (e) => addRipple(e, btn));
+        });
+
+        // ═══ Micro-interactions: Card Tilt (desktop) ═══
+        if (window.innerWidth >= 768) {
+            document.querySelectorAll('.photo-hover').forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = (e.clientX - rect.left) / rect.width - 0.5;
+                    const y = (e.clientY - rect.top) / rect.height - 0.5;
+                    card.style.transform = 'perspective(600px) rotateX(' + (y * -5) + 'deg) rotateY(' + (x * 5) + 'deg) translateY(-8px) scale(1.03)';
+                });
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = '';
+                });
+            });
+        }
+
+        // ═══ Lightbox Pro: Touch Swipe ═══
+        let lbStartX = 0, lbDeltaX = 0;
+
+        lightboxImg.addEventListener('touchstart', (e) => {
+            if (e.touches.length === 1 && !lightboxImg.classList.contains('zoomed')) {
+                lbStartX = e.touches[0].clientX;
+                lbDeltaX = 0;
+            }
+        }, { passive: true });
+
+        lightboxImg.addEventListener('touchmove', (e) => {
+            if (e.touches.length === 1 && !lightboxImg.classList.contains('zoomed')) {
+                lbDeltaX = e.touches[0].clientX - lbStartX;
+            }
+        }, { passive: true });
+
+        lightboxImg.addEventListener('touchend', () => {
+            if (Math.abs(lbDeltaX) > 50 && !lightboxImg.classList.contains('zoomed')) {
+                lightboxNav(lbDeltaX < 0 ? 1 : -1);
+            }
+            lbDeltaX = 0;
+        });
+
+        // ═══ Lightbox Pro: Double-tap Zoom ═══
+        let lastTapTime = 0;
+        lightboxImg.addEventListener('click', (e) => {
+            const now = Date.now();
+            if (now - lastTapTime < 320) {
+                lightboxImg.classList.toggle('zoomed');
+                if (lightboxImg.classList.contains('zoomed')) {
+                    const rect = lightboxImg.getBoundingClientRect();
+                    const ox = ((e.clientX - rect.left) / rect.width) * 100;
+                    const oy = ((e.clientY - rect.top) / rect.height) * 100;
+                    lightboxImg.style.transformOrigin = ox + '% ' + oy + '%';
+                } else {
+                    lightboxImg.style.transformOrigin = '';
+                }
+                e.stopPropagation();
+            }
+            lastTapTime = now;
+        });
+
+        // ═══ Navbar: Active Section Tracking & Auto-hide ═══
+        const navItems = document.querySelectorAll('.nav-item[data-section]');
+        const sections = ['home', 'letter', 'gallery'];
+        const floatingNav = document.getElementById('floatingNav');
+        let lastScrollY = 0;
+        let navHideTimer;
+
+        function updateActiveNav() {
+            let current = 'home';
+            const scrollY = window.scrollY;
+            sections.forEach(id => {
+                const el = document.getElementById(id);
+                if (el && el.offsetTop - 200 <= scrollY) current = id;
+            });
+            navItems.forEach(item => {
+                item.classList.toggle('active', item.dataset.section === current);
+            });
+        }
+
+        function handleNavVisibility() {
+            const scrollY = window.scrollY;
+            if (scrollY > lastScrollY && scrollY > 300) {
+                floatingNav.classList.add('nav-hidden');
+            } else {
+                floatingNav.classList.remove('nav-hidden');
+            }
+            lastScrollY = scrollY;
+
+            clearTimeout(navHideTimer);
+            navHideTimer = setTimeout(() => {
+                if (window.scrollY > 300) floatingNav.classList.add('nav-hidden');
+            }, 3000);
+        }
+
+        window.addEventListener('scroll', () => {
+            updateActiveNav();
+            handleNavVisibility();
+        }, { passive: true });
+
+        floatingNav.addEventListener('mouseenter', () => {
+            clearTimeout(navHideTimer);
+            floatingNav.classList.remove('nav-hidden');
+        });
+
+        updateActiveNav();
     </script>
 </body>
 </html>
